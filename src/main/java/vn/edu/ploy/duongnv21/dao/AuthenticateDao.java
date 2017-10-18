@@ -44,23 +44,28 @@ public class AuthenticateDao {
 		// Declare reuslt variable
 		Account account = null;
 
-		// Open Hibernate session
-		this.openSession();
+		// Handler error with try - catch - finally
+		try {
 
-		// Create HQL query stirng
-		String queryString = "from Account where username = :username and password = :password and type = :userType";
+			// Open Hibernate session
+			this.openSession();
 
-		// Create query & set param
-		Query<Account> query = this.session.createQuery(queryString, Account.class);
-		query.setParameter("username", username);
-		query.setParameter("password", password);
-		query.setParameter("userType", userType);
+			// Create HQL query stirng
+			String queryString = "from Account where username = :username and password = :password and type = :userType";
 
-		// Get account
-		account = query.uniqueResult();
+			// Create query & set param
+			Query<Account> query = this.session.createQuery(queryString, Account.class);
+			query.setParameter("username", username);
+			query.setParameter("password", password);
+			query.setParameter("userType", userType);
 
-		// Close Hibernate session
-		this.closeSession();
+			// Get account
+			account = query.uniqueResult();
+
+		} finally {
+			// Close Hibernate session
+			this.closeSession();
+		}
 
 		// Return result
 		return account;

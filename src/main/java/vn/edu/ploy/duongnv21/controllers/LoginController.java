@@ -68,6 +68,9 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// Set encoding
+		request.setCharacterEncoding(CommonConst.REQEUST_CHARACTER_ENCODING_UTF8);
+
 		// Get logged in account from session
 		HttpSession session = request.getSession();
 		Account account = (Account) session.getAttribute(CommonConst.SESSION_ATTRIBUTE_ACCOUNT);
@@ -92,6 +95,13 @@ public class LoginController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// Set encoding
+		request.setCharacterEncoding(CommonConst.REQEUST_CHARACTER_ENCODING_UTF8);
+
+		// Invalid old session
+		HttpSession session = request.getSession();
+		session.removeAttribute(CommonConst.SESSION_ATTRIBUTE_ACCOUNT);
 
 		// Get parameters
 		String username = request.getParameter("username");
@@ -135,7 +145,6 @@ public class LoginController extends HttpServlet {
 		}
 
 		// Set session data
-		HttpSession session = request.getSession();
 		session.setAttribute(CommonConst.SESSION_ATTRIBUTE_ACCOUNT, account);
 
 		// Return to default path

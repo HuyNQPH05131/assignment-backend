@@ -49,6 +49,9 @@ public class LogoutController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// Set encoding
+		request.setCharacterEncoding(CommonConst.REQEUST_CHARACTER_ENCODING_UTF8);
+
 		// Invalid session
 		HttpSession session = request.getSession();
 		session.invalidate();

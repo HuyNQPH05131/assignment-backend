@@ -27,6 +27,9 @@ public final class CommonConst {
 	private CommonConst() {
 	}
 
+	/** Request Character encoding */
+	public static final String REQEUST_CHARACTER_ENCODING_UTF8 = "UTF-8";
+
 	/** Session attribute: account */
 	public static final String SESSION_ATTRIBUTE_ACCOUNT = "account";
 

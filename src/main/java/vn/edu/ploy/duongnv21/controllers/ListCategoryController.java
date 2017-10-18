@@ -15,6 +15,7 @@
 package vn.edu.ploy.duongnv21.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.GenericServlet;
 import javax.servlet.RequestDispatcher;
@@ -25,7 +26,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import vn.edu.ploy.duongnv21.common.CommonConst;
+import vn.edu.ploy.duongnv21.dao.CategoryDao;
 import vn.edu.ploy.duongnv21.model.Account;
+import vn.edu.ploy.duongnv21.model.Category;
 
 /**
  * Assignment Demo -> ListCategoryController
@@ -36,6 +39,9 @@ public class ListCategoryController extends HttpServlet {
 
 	/** Serial Version UID */
 	private static final long serialVersionUID = -9133720054267138506L;
+
+	/** Category Data Accessing Object */
+	private CategoryDao categoryDao;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -50,7 +56,8 @@ public class ListCategoryController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 
-		// TODO
+		// Instance new DAO
+		this.categoryDao = new CategoryDao();
 	}
 
 	/**
@@ -72,7 +79,11 @@ public class ListCategoryController extends HttpServlet {
 			return;
 		}
 
-		// TODO
+		// Get data from database
+		List<Category> listCategories = this.categoryDao.getListCategories();
+
+		// Set data into request scope
+		request.setAttribute("listCategories", listCategories);
 
 		// Redirect to list categories JSP
 		RequestDispatcher dispatcher = request.getServletContext()
