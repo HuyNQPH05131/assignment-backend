@@ -1,0 +1,22 @@
+html, body {
+	font-family: sans-serif;
+	font-size: 13px;
+	color: #333;
+}
+button, .btn {
+	cursor: pointer;
+}
+header {
+	margin-bottom: 30px;
+}
+footer {
+	margin-top: 30px;
+	text-align: center;
+	border-top: 1px solid #666;
+	padding: 10px;
+}
+.page-title {
+	font-weight: 500;
+	font-size: 17px;
+	margin-bottom: 20px;
+}
