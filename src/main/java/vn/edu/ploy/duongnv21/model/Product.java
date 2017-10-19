@@ -48,6 +48,9 @@ public class Product implements java.io.Serializable {
 	/** Products.Status */
 	private String status;
 
+	/** Product category */
+	private Category category;
+
 	/**
 	 * Default constructor
 	 */
@@ -165,5 +168,19 @@ public class Product implements java.io.Serializable {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	/**
+	 * @return the category
+	 */
+	public Category getCategory() {
+		return this.category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 }

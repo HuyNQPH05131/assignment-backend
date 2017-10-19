@@ -15,6 +15,7 @@
 package vn.edu.ploy.duongnv21.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.GenericServlet;
 import javax.servlet.RequestDispatcher;
@@ -25,7 +26,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import vn.edu.ploy.duongnv21.common.CommonConst;
+import vn.edu.ploy.duongnv21.dao.ProductDao;
 import vn.edu.ploy.duongnv21.model.Account;
+import vn.edu.ploy.duongnv21.model.Product;
 
 /**
  * Assignment Demo -> ListProductController
@@ -36,6 +39,9 @@ public class ListProductController extends HttpServlet {
 
 	/** Serial Version UID */
 	private static final long serialVersionUID = 3587190937630338533L;
+
+	/** Product Data Accessing Object */
+	private ProductDao productDao;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -50,7 +56,8 @@ public class ListProductController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 
-		// TODO
+		// Instance new DAO
+		this.productDao		= new ProductDao();
 	}
 
 	/**
@@ -75,11 +82,15 @@ public class ListProductController extends HttpServlet {
 			return;
 		}
 
-		// TODO
+		// Get data from database
+		List<Product> listProducts = this.productDao.getListProduct();
+
+		// Set data into request scope
+		request.setAttribute("listProducts", listProducts);
 
 		// Redirect to list categories JSP
 		RequestDispatcher dispatcher = request.getServletContext()
-														.getRequestDispatcher("/views/category/list.jsp");
+														.getRequestDispatcher("/views/product/list.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -105,11 +116,15 @@ public class ListProductController extends HttpServlet {
 			return;
 		}
 
-		// TODO
+		// Get data from database
+		List<Product> listProducts = this.productDao.getListProduct();
+
+		// Set data into request scope
+		request.setAttribute("listProducts", listProducts);
 
 		// Redirect to list categories JSP
 		RequestDispatcher dispatcher = request.getServletContext()
-														.getRequestDispatcher("/views/category/list.jsp");
+														.getRequestDispatcher("/views/product/list.jsp");
 		dispatcher.forward(request, response);
 	}
 }

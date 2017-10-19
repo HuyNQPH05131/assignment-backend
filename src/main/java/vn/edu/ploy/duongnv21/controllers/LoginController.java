@@ -111,15 +111,17 @@ public class LoginController extends HttpServlet {
 		boolean hasInvalid = false;
 		if (StringUtils.isEmpty(username)) { // Validate username
 			request.setAttribute("errUsername", "Username is reuqired field.");
-			request.setAttribute("hasInvalid", true);
 			hasInvalid = true;
 		}
 		if (StringUtils.isEmpty(password)) { // Validate password
 			request.setAttribute("errPassword", "Password is reuqired field.");
-			request.setAttribute("hasInvalid", true);
 			hasInvalid = true;
 		}
 		if (hasInvalid) { // Check invalid flag
+
+			// Set invalid flash
+			request.setAttribute("hasInvalid", true);
+
 			// Forward to login page with invalid message
 			RequestDispatcher dispatcher = request.getServletContext()
 															.getRequestDispatcher("/views/auth/login.jsp");

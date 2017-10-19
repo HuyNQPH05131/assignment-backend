@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import vn.edu.ploy.duongnv21.common.CommonConst;
+import vn.edu.ploy.duongnv21.dao.ProductDao;
 import vn.edu.ploy.duongnv21.model.Account;
 
 /**
@@ -36,6 +37,9 @@ public class EditProductController extends HttpServlet {
 
 	/** Serial Version UID */
 	private static final long serialVersionUID = -8346149941753835451L;
+
+	/** Product Data Accessing Object */
+	private ProductDao productDao;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -50,7 +54,8 @@ public class EditProductController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 
-		// TODO
+		// Instance new DAO
+		this.productDao		= new ProductDao();
 	}
 
 	/**
@@ -79,7 +84,7 @@ public class EditProductController extends HttpServlet {
 
 		// Redirect to list categories JSP
 		RequestDispatcher dispatcher = request.getServletContext()
-														.getRequestDispatcher("/views/category/list.jsp");
+														.getRequestDispatcher("/views/product/edit.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -109,7 +114,7 @@ public class EditProductController extends HttpServlet {
 
 		// Redirect to list categories JSP
 		RequestDispatcher dispatcher = request.getServletContext()
-														.getRequestDispatcher("/views/category/list.jsp");
+														.getRequestDispatcher("/views/product/edit.jsp");
 		dispatcher.forward(request, response);
 	}
 }

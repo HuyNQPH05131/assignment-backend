@@ -166,15 +166,16 @@ public class EditCategoryController extends HttpServlet {
 		boolean hasInvalid = false;
 		if (StringUtils.isEmpty(name)) { // Validate name
 			request.setAttribute("errName", "Name is reuqired field.");
-			request.setAttribute("hasInvalid", true);
 			hasInvalid = true;
 		}
 		if (StringUtils.isNotBlank(fatherId) && !StringUtils.isNumeric(fatherId)) { // Validate name
 			request.setAttribute("errFatherId", "FatherID must be a number.");
-			request.setAttribute("hasInvalid", true);
 			hasInvalid = true;
 		}
 		if (hasInvalid) { // Check invalid flag
+
+			// Set invalid flash
+			request.setAttribute("hasInvalid", true);
 
 			// Find category
 			Category category = this.categoryDao.getCategory(Integer.parseInt(id));
